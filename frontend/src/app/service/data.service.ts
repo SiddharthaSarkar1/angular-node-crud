@@ -3,31 +3,30 @@ import { HttpClient } from '@angular/common/http';
 import { Employee } from '../employee';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
+  private apiUrl = '/api/v1/employee';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  getData(){
-    return this.httpClient.get('http://127.0.0.1:8000/api/employees');
+  getData() {
+    return this.httpClient.get(this.apiUrl);
   }
 
-  insertData(data: any){
-    return this.httpClient.post('http://127.0.0.1:8000/api/addEmployee', data);
+  insertData(data: any) {
+    return this.httpClient.post(this.apiUrl, data);
   }
 
-  deleteData(id: any){
-    return this.httpClient.delete(`http://127.0.0.1:8000/api/deleteEmployee/${id}`);
+  deleteData(id: any) {
+    return this.httpClient.delete(`${this.apiUrl}/${id}`);
   }
 
-  getEmployeeById(id: any){
-    return this.httpClient.get(`http://127.0.0.1:8000/api/employee/${id}`);
+  getEmployeeById(id: any) {
+    return this.httpClient.get(`${this.apiUrl}/${id}`);
   }
 
-  updateEmployee(id: any, data: any){
-    return this.httpClient.put(`http://127.0.0.1:8000/api/updateEmployee/${id}`, data);
+  updateEmployee(id: any, data: any) {
+    return this.httpClient.put(`${this.apiUrl}/${id}`, data);
   }
-
-
 }
